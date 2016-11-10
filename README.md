@@ -2,7 +2,7 @@
 
 ## Configuration Files
 
-`paths.json`:
+`config.json`:
 
 ```
 {
