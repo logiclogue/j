@@ -1,0 +1,23 @@
+{
+  "name": "j",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logiclogue/j.git"
+  },
+  "author": "Jordan Lord (http://jordanlord.co.uk)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/logiclogue/j/issues"
+  },
+  "homepage": "https://github.com/logiclogue/j#readme",
+  "dependencies": {
+    "inquirer": "^1.2.2",
+    "sqlite3": "^3.1.8"
+  }
+}
