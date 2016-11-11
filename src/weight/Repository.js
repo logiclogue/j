@@ -1,14 +1,18 @@
 var config = require('../../config.json');
+var Model = require('./Model');
 var weightPath = config.paths.weight;
 var weight = require(weightPath);
 
-console.log(weight);
-
-
 class Repository {
 
-    update() {
-        
+    update(model) {
+        if (!(model instanceof Model)) {
+            return false;
+        }
+
+        if (!model.isValid) {
+            return false;
+        }
     }
 
     add() {
