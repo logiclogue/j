@@ -1,7 +1,7 @@
-var Mongoose = require('mongoose');
-var Schema = Mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var Model = new Schema({
+var ModelSchema = new Schema({
     date: {
         type: String,
         default: ""
@@ -11,4 +11,4 @@ var Model = new Schema({
     }
 });
 
-module.exports = Model;
+module.exports = mongoose.model('Model', ModelSchema);
