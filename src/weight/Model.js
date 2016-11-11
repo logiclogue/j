@@ -4,11 +4,21 @@ var Schema = mongoose.Schema;
 var ModelSchema = new Schema({
     date: {
         type: String,
-        default: ""
+        match: /^\d{4}-\d{2}-\d{2}$/,
+        required: true
     },
     weight: {
-        type: Number
+        type: Number,
+        required: true
     }
 });
 
-module.exports = mongoose.model('Model', ModelSchema);
+class Model extends mongoose.model('Model', ModelSchema) {
+
+    get validate() {
+        return this.validateSync();
+    }
+
+}
+
+module.exports = Model;
