@@ -11,28 +11,27 @@ class Repository {
         this._filePath = weightPath;
     }
 
-    update(model) {
+    add(model) {
         if (!(model instanceof Model)) {
             return false;
         }
 
-        console.log(model.validate);
-
-        if (!model.validate.error) {
+        if (model.validate) {
             return false;
         }
 
-        this._data.push(model);
+        this._data.push({
+            date: model.date,
+            weight: model.weight
+        });
         this._write();
     }
 
-    add() {
-        
-    }
-
-
     _write() {
-        fs.writeFileSync(this._filePath, this._data);
+        var json = JSON.stringify(this._data);
+
+        console.log(json);
+        fs.writeFileSync(this._filePath, json);
     }
 
 }
