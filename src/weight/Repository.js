@@ -11,6 +11,12 @@ class Repository {
         this._filePath = weightPath;
     }
 
+    getByDate(date) {
+        return this._data.find((record) => {
+            return record.date == date;
+        });
+    }
+
     add(model) {
         if (!(model instanceof Model)) {
             return false;
@@ -27,7 +33,6 @@ class Repository {
     _write() {
         var json = JSON.stringify(this._data);
 
-        console.log(json);
         fs.writeFileSync(this._filePath, json);
     }
 
