@@ -20,10 +20,7 @@ class Repository {
             return false;
         }
 
-        this._data.push({
-            date: model.date,
-            weight: model.weight
-        });
+        this._data.push(model);
         this._write();
     }
 
