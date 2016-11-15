@@ -13,7 +13,7 @@ class Repository {
 
     getByDate(date) {
         return this._data.find((record) => {
-            return record.date == date;
+            return record.date === date;
         });
     }
 
@@ -23,6 +23,10 @@ class Repository {
         }
 
         if (model.validate) {
+            return false;
+        }
+
+        if (!this.getByDate(model.date)) {
             return false;
         }
 
