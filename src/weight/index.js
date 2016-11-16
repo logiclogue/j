@@ -5,14 +5,39 @@ var inquirer = require('inquirer');
 var repo = new Repository();
 
 var test = repo.getByDate("2016-11-14");
+var model = new Model();
 
-var question = {
-    type: 'confirm',
-    name: 'dateConfirm',
-    message: 'Use today\'s date?',
-    default: true
-};
+var questions = [
+    {
+        type: 'confirm',
+        name: 'isCurrentDate',
+        message: 'Use today\'s date?',
+        default: true
+    },
+    {
+        type: 'input',
+        name: 'date',
+        message: 'Date (YYYY-MM-DD):',
+        validate: function (value) {
+            model.date = value;
+            var msg = model.getValidationError('date');
 
-inquirer.prompt(question).then(function (answers) {
-    
+            return msg;
+        }
+    },
+    {
+        type: 'input',
+        name: 'weight',
+        message: 'Weight (kg):',
+        validate: function (value) {
+            model.weight = value;
+            var msg = model.getValidationError('weight');
+            
+            return msg;
+        }
+    }
+];
+
+inquirer.prompt(questions).then(function (answers) {
+    console.log(answers);
 });

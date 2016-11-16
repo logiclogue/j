@@ -17,6 +17,24 @@ var ModelSchema = new Schema({
 
 class Model extends mongoose.model('Model', ModelSchema) {
 
+    getValidationError(field) {
+        var validateObj = this.validate;
+
+        if (!validateObj) {
+            return true;
+        }
+
+        if (!validateObj.errors) {
+            return true;
+        }
+
+        if (!validateObj.errors[field]) {
+            return true;
+        }
+
+        return validateObj.errors[field].message;
+    }
+
     get validate() {
         return this.validateSync();
     }
