@@ -32,12 +32,12 @@ var questions = [
         validate: function (value) {
             model.weight = value;
             var msg = model.getValidationError('weight');
-            
+
             return msg;
         }
     }
 ];
 
 inquirer.prompt(questions).then(function (answers) {
-    console.log(answers);
+    console.log(model);
 });
