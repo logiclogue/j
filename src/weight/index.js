@@ -19,7 +19,7 @@ var questions = [
         name: 'date',
         message: 'Date (YYYY-MM-DD):',
         validate: function (value) {
-            model.date = value;
+            model.data.date = value;
             var msg = model.getValidationError('date');
 
             return msg;
@@ -30,7 +30,7 @@ var questions = [
         name: 'weight',
         message: 'Weight (kg):',
         validate: function (value) {
-            model.weight = value;
+            model.data.weight = value;
             var msg = model.getValidationError('weight');
 
             return msg;
@@ -39,5 +39,5 @@ var questions = [
 ];
 
 inquirer.prompt(questions).then(function (answers) {
-    console.log(model);
+    console.log(model.data);
 });

@@ -1,11 +1,13 @@
 var mongoose = require('mongoose');
 
 
-class Export {
+class Model {
     
     constructor(schema) {
+        schema._id = false;
+
         this.schema = new mongoose.Schema(schema);
-        this.model = new mongoose.model('Model', this.schema);
+        this.data = mongoose.model('Model', schema);
     }
 
 
@@ -22,15 +24,15 @@ class Export {
             return true;
         }
 
-        if (!errors[field]) {
+        if (!errors[property]) {
             return true;
         }
 
-        return errors[field].message;
+        return errors[property].message;
     }
 
     get validate() {
-        return this.model.validateSync();
+        return this.data.validateSync();
     }
 
     //get isValid() {
@@ -38,3 +40,5 @@ class Export {
     //}
 
 }
+
+module.exports = Model;
