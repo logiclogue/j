@@ -6,7 +6,7 @@ class Question {
         this.message = obj.message;
         this.model = obj.model;
 
-        this.validate = this.validate.bind(this);
+        this.validate = obj.validate || this.validate.bind(this);
     }
 
 
