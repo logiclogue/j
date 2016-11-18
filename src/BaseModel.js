@@ -1,13 +1,14 @@
 var mongoose = require('mongoose');
 
 
-class Model {
+class BaseModel {
     
     constructor(schema) {
         schema._id = false;
 
-        this.schema = new mongoose.Schema(schema);
-        this.data = mongoose.model('Model', schema);
+        var Model = mongoose.model('Model', schema);
+
+        this.data = new Model();
     }
 
 
@@ -41,4 +42,4 @@ class Model {
 
 }
 
-module.exports = Model;
+module.exports = BaseModel;
