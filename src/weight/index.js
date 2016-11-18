@@ -1,5 +1,6 @@
 var Model = require('./Model');
 var Repository = require('./Repository');
+var Question = require('../Question');
 var inquirer = require('inquirer');
 
 var repo = new Repository();
@@ -14,28 +15,18 @@ var questions = [
         message: 'Use today\'s date?',
         default: true
     },
-    {
+    new Question({
         type: 'input',
         name: 'date',
         message: 'Date (YYYY-MM-DD):',
-        validate: function (value) {
-            model.data.date = value;
-            var msg = model.getValidationError('date');
-
-            return msg;
-        }
-    },
-    {
+        model: model
+    }),
+    new Question({
         type: 'input',
         name: 'weight',
         message: 'Weight (kg):',
-        validate: function (value) {
-            model.data.weight = value;
-            var msg = model.getValidationError('weight');
-
-            return msg;
-        }
-    }
+        model: model
+    })
 ];
 
 inquirer.prompt(questions).then(function (answers) {
