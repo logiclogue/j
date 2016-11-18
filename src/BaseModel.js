@@ -36,9 +36,9 @@ class BaseModel {
         return this.data.validateSync();
     }
 
-    //get isValid() {
-    //    return this.validate === true;
-    //}
+    get isValid() {
+        return this.validate !== true;
+    }
 
 }
 

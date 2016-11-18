@@ -18,20 +18,18 @@ class Repository {
     }
 
     add(model) {
-        if (!(model instanceof Model)) {
+        var isInstance = model instanceof Model;
+        var isValid = model.isValid;
+        var doesAlreadyExist = !!this.getByDate(model.data.date);
+
+        if (!isInstance || !isValid || doesAlreadyExist) {
             return false;
         }
 
-        if (model.validate) {
-            return false;
-        }
-
-        if (!this.getByDate(model.date)) {
-            return false;
-        }
-
-        this._data.push(model);
+        this._data.push(model.data);
         this._write();
+
+        return true;
     }
 
     _write() {
