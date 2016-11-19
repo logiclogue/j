@@ -11,6 +11,7 @@ class Repository {
         this._filePath = weightPath;
     }
 
+
     getByDate(date) {
         return this._data.find((record) => {
             return record.date === date;

@@ -1,35 +1,70 @@
 var Model = require('./Model');
 var Repository = require('./Repository');
-var Question = require('../Question');
+var Questions = require('./Questions');
 var inquirer = require('inquirer');
 
 
-var repository = new Repository();
-var model = new Model();
+class Weight {
+    
+    constructor(options) {
+        options = options || {};
 
-var questions = [
-    //{
-    //    type: 'confirm',
-    //    name: 'isCurrentDate',
-    //    message: 'Use today\'s date?',
-    //    default: true
-    //},
-    new Question({
-        type: 'input',
-        name: 'date',
-        message: 'Date (YYYY-MM-DD):',
-        model: model
-    }),
-    new Question({
-        type: 'input',
-        name: 'weight',
-        message: 'Weight (kg):',
-        model: model
-    })
-];
+        this.repository = options.repository || new Repository();
+        this.model = options.model || new Model();
+        this.questions = options.questions || new Questions({
+            model: this.model
+        });
+        this.prompt = options.prompt || inquirer.prompt;
+    }
 
-inquirer.prompt(questions).then(function (answers) {
-    var success = repository.add(model);
 
-    console.log(success);
-});
+    question() {
+        this.promptIsCurrentDate();
+    }
+
+    promptIsCurrentDate() {
+        var question = this.questions.isCurrentDate;
+
+        this.prompt([question]).then(answer => {
+            if (answer.isCurrentDate) {
+                this.model.data.date = this._getDateString();
+                this.promptWeight();
+            }
+            else {
+                this.promptDate();
+            }
+        });
+    }
+
+    promptDate() {
+        var question = this.questions.date;
+
+        this.prompt([question]).then(answer => {
+            this.promptWeight();
+        });
+    }
+
+    promptWeight() {
+        var question = this.questions.weight;
+        
+        this.prompt([question]).then(answer => {
+            var success = this.repository.add(this.model);
+
+            console.log(success);
+        });
+    }
+
+
+    _getDateString() {
+        var date = new Date();
+        var dateTimeString = date.toISOString();
+        var dateString = dateTimeString.substring(0, 10);
+
+        return dateString;
+    }
+
+}
+
+var weight = new Weight();
+
+weight.question();
