@@ -1,4 +1,4 @@
-var Question = require('../Question');
+var Question = require('./Question');
 
 
 class Questions {

@@ -1,6 +1,6 @@
-var Model = require('./Model');
-var Repository = require('./Repository');
-var Questions = require('./Questions');
+var Model = require('../Models/WeightModel');
+var Repository = require('../Repositories/WeightRepository');
+var Questions = require('../Services/WeightQuestions');
 var inquirer = require('inquirer');
 
 
@@ -65,6 +65,4 @@ class Weight {
 
 }
 
-var weight = new Weight();
-
-weight.question();
+module.exports = Weight;

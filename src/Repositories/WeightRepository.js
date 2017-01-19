@@ -1,6 +1,6 @@
 var fs = require('fs');
 var config = require('../../config.json');
-var Model = require('./Model');
+var Model = require('../Models/WeightModel');
 var weightPath = config.paths.weight;
 var weight = require(weightPath);
 
