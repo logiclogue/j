@@ -18,8 +18,6 @@
   "homepage": "https://github.com/logiclogue/j#readme",
   "dependencies": {
     "inquirer": "^1.2.2",
-    "mongoose": "^4.7.7",
-    "prompt-list": "^0.2.0",
-    "sqlite3": "^3.1.8"
+    "mongoose": "^4.7.7"
   }
 }
